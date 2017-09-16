@@ -9,9 +9,45 @@
 			<td>{{task.id}}</td>
 			<td>{{task.title}}</td>
 			<td>
-				<button class="btn btn-info">Detlhes</button>
-				<button class="btn btn-danger">Excluir</button>
+				<button class="btn btn-info" data-toggle="modal" data-target="#taskDetailModal" (click)="onSelect(task)">
+					<span class="glyphicon glyphicon-info-sign"></span>
+					Detlhes
+				</button>
+				<button class="btn btn-danger">
+					<span class="glyphicon glyphicon-trash"></span>
+					Excluir
+				</button>
 			</td>
 		</tr>
 	</tbody>
 </table>
+
+<!-- if selectefTask.present? -->
+<div *ngIf="selectedTask">
+  <p>
+  	<strong>ID: </strong>{{ selectedTask.id }}
+  </p>
+  <p>
+  	<strong>Título: </strong>{{ selectedTask.title }}
+  </p>
+</div>
+
+<!-- Modal -->
+	<!-- seria equivalente a isto em ruby if selectefTask.present? -->
+<div class="modal fade" id="taskDetailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  *ngIf="selectedTask">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Titulo da Tarefa: {{ selectedTask.title }}</h4>
+      </div>
+      <div class="modal-body">
+      	<input [(ngModel)]="selectedTask.title" type="text" class="form-control">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
