@@ -1,19 +1,16 @@
-<!-- Modal -->
-	<!-- seria equivalente a isto em ruby if selectefTask.present? -->
-<div class="modal fade" id="taskDetailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  *ngIf="task">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Titulo da Tarefa: {{ task.title }}</h4>
-      </div>
-      <div class="modal-body">
-      	<input [(ngModel)]="task.title" type="text" class="form-control">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+<h1>Detalhes da Tarefa: {{ task?.title }}</h1>
+
+<div class="form-horizontal" *ngIf="task">
+  <div class="form-group">
+    <label for="title" class="col-sm-2 control-label">Titulo</label>
+    <div class="col-sm-8">
+      <input [(ngModel)]="task.text" class="form-control" id="title" placeholder="Titulo">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-1=8"> 
+      <button type="submit" class="btn btn-success">Salvar</button>
     </div>
   </div>
 </div>
