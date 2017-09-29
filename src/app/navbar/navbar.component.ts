@@ -12,7 +12,8 @@ import { TaskService } from '../tasks/shared/task.service';
 // 3 - Exporta
 export class NavbarComponent{
 	public constructor(private taskService: TaskService){
-		this.taskService.getTasks().then((tasks) => console.log(tasks));
+		this.taskService.getTasks()
+			.subscribe((tasks) => console.log(tasks));
 	}
 
 }

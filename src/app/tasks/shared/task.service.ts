@@ -28,7 +28,8 @@ export class TaskService{
 	}
 
 	public getImportantTasks(): Observable<Task[]> {
-		return Observable.resolve(TASKS.slice(0, 3));
+		return this.getTasks()
+			.map(tasks => tasks.slice(0, 3));
 	}
 
 	public getTask(id: number): Observable<Task> {
