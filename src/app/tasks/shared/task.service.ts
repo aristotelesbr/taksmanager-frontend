@@ -3,18 +3,21 @@ import { Injectable } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
+import 'rxjs/add/observable/throw';
 
 import { Task } from "./task.model";
 
 @Injectable()
 
 export class TaskService{
-	public tasksUrl = "api/tasks";
+	public tasksUrl = 'api/taskss';
 
 	public constructor(private http: Http){}
 	
 	public getTasks(): Observable<Task[]>{
 		return this.http.get(this.tasksUrl)
+			.catch(this.handleErros)
 			.map((response: Response) => response.json().data as Task[])
 	}
 
@@ -28,5 +31,10 @@ export class TaskService{
 
 		return 	this.http.get(url)
 			.map((response: Response) => response.json().data as Task)
-	} 
+	}
+
+	private handleErros(error: Response){
+		console.log("SALVANDO O ERRO NUM ARQUIVO DE LOG, DETALHES DO ERROR => ", error)
+		return Observable.throw(error);
+	}
 }
