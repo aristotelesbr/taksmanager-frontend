@@ -11,7 +11,7 @@ import { Task } from "./task.model";
 @Injectable()
 
 export class TaskService{
-	public tasksUrl = 'api/taskss';
+	public tasksUrl = 'api/tasks';
 
 	public constructor(private http: Http){}
 	
